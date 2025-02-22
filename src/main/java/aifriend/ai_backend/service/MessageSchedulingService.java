@@ -12,6 +12,8 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
 
+import aifriend.ai_backend.model.MessageFrequency;
+
 @Service
 public class MessageSchedulingService {
 
@@ -119,10 +121,11 @@ public class MessageSchedulingService {
 
         long hoursSinceLastMessage = java.time.Duration.between(lastMessageTime, now).toHours();
 
-        return switch (prefs.getMessageFrequency()) {
+        MessageFrequency frequency = MessageFrequency.valueOf(prefs.getMessageFrequency());
+        return switch (frequency) {
             case DAILY -> hoursSinceLastMessage >= 24;
-            case WEEKLY -> hoursSinceLastMessage >= 168; // 7 * 24
-            case MONTHLY -> hoursSinceLastMessage >= 720; // 30 * 24
+            case WEEKLY -> hoursSinceLastMessage >= 168;
+            case MONTHLY -> hoursSinceLastMessage >= 720;
             default -> false;
         };
     }
@@ -167,8 +170,9 @@ public class MessageSchedulingService {
     }
 
     private String selectInitialMessage(Persona persona) {
-        if (persona.getSampleMessages() != null && persona.getSampleMessages().length > 0) {
-            return persona.getSampleMessages()[random.nextInt(persona.getSampleMessages().length)];
+        List<String> sampleMessages = persona.getSampleMessages();
+        if (sampleMessages != null && !sampleMessages.isEmpty()) {
+            return sampleMessages.get(random.nextInt(sampleMessages.size()));
         }
         
         // Fallback to a generic message

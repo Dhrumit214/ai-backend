@@ -7,6 +7,12 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.ArrayList;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "personas")
@@ -27,8 +33,9 @@ public class Persona {
     @Column(name = "system_prompt", columnDefinition = "TEXT")
     private String systemPrompt;
 
-    @Column(name = "sample_messages", columnDefinition = "TEXT")
-    private String sampleMessages;
+    @Column(name = "sample_messages")
+    @JdbcTypeCode(SqlTypes.JSON)
+    private Object sampleMessages;
 
     @Column(name = "is_active")
     private Boolean isActive = true;
@@ -57,5 +64,16 @@ public class Persona {
         this.sampleMessages = sampleMessages;
     }
 
-    
+    @SuppressWarnings("unchecked")
+    public List<String> getSampleMessages() {
+        if (this.sampleMessages instanceof String) {
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                return mapper.readValue((String) this.sampleMessages, new TypeReference<List<String>>() {});
+            } catch (Exception e) {
+                return new ArrayList<>();
+            }
+        }
+        return this.sampleMessages != null ? (List<String>) this.sampleMessages : new ArrayList<>();
+    }
 }

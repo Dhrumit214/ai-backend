@@ -10,6 +10,8 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -45,8 +47,9 @@ public class Message {
     @Column(name = "sentiment", nullable = false)
     private SentimentType sentiment = SentimentType.NEUTRAL;
 
-    @Column(name = "tags")
-    private String[] tags;
+    @Column(name = "tags", columnDefinition = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
+    private List<String> tags = new ArrayList<>();
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "context", columnDefinition = "jsonb")
