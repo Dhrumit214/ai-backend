@@ -31,7 +31,6 @@ public class AppConfig {
      * @return OkHttpClient
      */
     @Bean
-    @Profile("!test") // This bean is not created in the test profile
     public OkHttpClient okHttpClient() {
         return new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)

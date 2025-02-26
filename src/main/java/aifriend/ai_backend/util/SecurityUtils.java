@@ -27,10 +27,10 @@ public class SecurityUtils {
     private static final int HASH_ITERATIONS = 65536;
     private static final int HASH_KEY_LENGTH = 256;
     
-    @Value("${app.security.encryption.key:fallbackKey123456789012345678901234}")
+    @Value("${security.encryption.key:fallbackKey1234567890123456}")
     private String encryptionKey;
     
-    @Value("${app.security.hash.salt:fallbackSalt123456789012345678901234}")
+    @Value("${security.salt:fallbackSalt1234567890123456}")
     private String hashSalt;
     
     private final SecureRandom secureRandom = new SecureRandom();
@@ -49,7 +49,7 @@ public class SecurityUtils {
             
             // Initialize cipher
             Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-            SecretKey secretKey = new SecretKeySpec(encryptionKey.getBytes(StandardCharsets.UTF_8), "AES");
+            SecretKey secretKey = generateAESKey(encryptionKey);
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, parameterSpec);
             
             // Encrypt
@@ -85,7 +85,7 @@ public class SecurityUtils {
             
             // Initialize cipher for decryption
             Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-            SecretKey secretKey = new SecretKeySpec(encryptionKey.getBytes(StandardCharsets.UTF_8), "AES");
+            SecretKey secretKey = generateAESKey(encryptionKey);
             GCMParameterSpec parameterSpec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
             cipher.init(Cipher.DECRYPT_MODE, secretKey, parameterSpec);
             
@@ -148,5 +148,22 @@ public class SecurityUtils {
             hexString.append(hex);
         }
         return hexString.toString();
+    }
+    
+    /**
+     * Generates a valid AES key from a string
+     * AES requires keys of exactly 16, 24, or 32 bytes (128, 192, or 256 bits)
+     */
+    private SecretKey generateAESKey(String keyString) {
+        try {
+            // Use SHA-256 to get a consistent 32-byte key
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] keyBytes = digest.digest(keyString.getBytes(StandardCharsets.UTF_8));
+            
+            // Use first 32 bytes (256 bits) for AES-256
+            return new SecretKeySpec(keyBytes, "AES");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Could not generate AES key", e);
+        }
     }
 } 

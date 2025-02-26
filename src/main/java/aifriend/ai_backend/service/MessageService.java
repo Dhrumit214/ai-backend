@@ -131,7 +131,9 @@ public class MessageService {
     }
 
     public void deleteMessage(Long messageId) {
-        messageRepository.findById(messageId).ifPresent(message -> {
+        // Since we now use a composite key, we need to find the message first to get its createdAt value
+        Optional<Message> messageOpt = messageRepository.findByIdOrderByCreatedAtDesc(messageId);
+        messageOpt.ifPresent(message -> {
             message.setDeletedAt(LocalDateTime.now());
             messageRepository.save(message);
         });
