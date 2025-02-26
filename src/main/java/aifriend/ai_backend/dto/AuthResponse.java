@@ -7,9 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageRequest {
-    private String userId;
+public class AuthResponse {
+    private String token;
+    private Long userId;
+    private String email;
+    private String firstName;
+    private String lastName;
     private String message;
-    private String persona;
 }
-

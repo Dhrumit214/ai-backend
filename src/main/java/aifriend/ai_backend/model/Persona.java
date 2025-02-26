@@ -7,12 +7,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "personas")
@@ -27,18 +23,21 @@ public class Persona {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description", columnDefinition = "TEXT")
-    private String description;
-
-    @Column(name = "system_prompt", columnDefinition = "TEXT")
+    @Column(name = "system_prompt", columnDefinition = "text")
     private String systemPrompt;
 
-    @Column(name = "sample_messages")
-    @JdbcTypeCode(SqlTypes.JSON)
-    private Object sampleMessages;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "is_active")
+    @Column(name = "sample_messages", columnDefinition = "text")
+    private String sampleMessagesJson;
+
+    @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "required_plan")
+    private PlanType requiredPlan = PlanType.free;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
@@ -48,32 +47,30 @@ public class Persona {
     @Column(name = "modified_at", nullable = false)
     private LocalDateTime modifiedAt;
 
-    @Version
-    @Column(name = "version", nullable = false)
-    private Integer version = 1;
-
     public enum PlanType {
-        free, basic, premium, vip
+        free,
+        premium,
+        enterprise
     }
 
-    // Constructor for creating a new persona
-    public Persona(String name, String systemPrompt, String description, String sampleMessages) {
+    // Constructor for setting up default personas
+    public Persona(String name, String systemPrompt, String description, String sampleMessagesJson) {
         this.name = name;
         this.systemPrompt = systemPrompt;
         this.description = description;
-        this.sampleMessages = sampleMessages;
+        this.sampleMessagesJson = sampleMessagesJson;
+        this.isActive = true;
+        this.requiredPlan = PlanType.free;
     }
 
-    @SuppressWarnings("unchecked")
+    // Helper method to get the sample messages as a List
     public List<String> getSampleMessages() {
-        if (this.sampleMessages instanceof String) {
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                return mapper.readValue((String) this.sampleMessages, new TypeReference<List<String>>() {});
-            } catch (Exception e) {
-                return new ArrayList<>();
-            }
+        if (sampleMessagesJson == null || sampleMessagesJson.isEmpty()) {
+            return Arrays.asList("Hey there! How's your day going?");
         }
-        return this.sampleMessages != null ? (List<String>) this.sampleMessages : new ArrayList<>();
+        
+        // Simple parsing of the JSON array string (basic implementation)
+        String cleaned = sampleMessagesJson.replaceAll("\\[|\\]|\\\"", "");
+        return Arrays.asList(cleaned.split(","));
     }
 }

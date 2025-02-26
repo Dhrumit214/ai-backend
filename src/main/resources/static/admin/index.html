@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Friend Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            background-color: #343a40;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            color: #adb5bd;
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            transition: all 0.3s;
+        }
+        .sidebar a:hover {
+            color: white;
+            background-color: #495057;
+        }
+        .sidebar a.active {
+            color: white;
+            background-color: #007bff;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+        }
+        .stat-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .stat-card p {
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #dashboard, #users, #billing, #settings {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div id="login" class="login-container">
+        <h2 class="text-center mb-4">AI Friend Admin</h2>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <div id="loginError" class="alert alert-danger mt-3" style="display: none;"></div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="main-container" style="display: none;">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-2 sidebar">
+                    <h4 class="text-center mb-4">AI Friend Admin</h4>
+                    <a href="#" class="active" id="dashboard-link">Dashboard</a>
+                    <a href="#" id="users-link">Users</a>
+                    <a href="#" id="billing-link">Billing</a>
+                    <a href="#" id="settings-link">Settings</a>
+                    <a href="#" id="logout-link" class="mt-5">Logout</a>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-md-10 main-content">
+                    <!-- Dashboard Section -->
+                    <div id="dashboard">
+                        <h2 class="mb-4">Dashboard</h2>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card stat-card">
+                                    <h2 id="totalUsers">0</h2>
+                                    <p>Total Users</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card stat-card">
+                                    <h2 id="activeUsers">0</h2>
+                                    <p>Active Users</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card stat-card">
+                                    <h2 id="totalMessages">0</h2>
+                                    <p>Total Messages</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card stat-card">
+                                    <h2 id="totalRevenue">$0</h2>
+                                    <p>Total Revenue</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Recent Activity
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group" id="recentActivity">
+                                            <li class="list-group-item">No recent activity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Monthly Revenue
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="revenueChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Users Section -->
+                    <div id="users">
+                        <h2 class="mb-4">Users</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="usersTable">
+                                            <tr>
+                                                <td colspan="6" class="text-center">Loading users...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Section -->
+                    <div id="billing">
+                        <h2 class="mb-4">Billing</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>User</th>
+                                                <th>Period</th>
+                                                <th>Messages</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="billingTable">
+                                            <tr>
+                                                <td colspan="6" class="text-center">Loading billing records...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div id="settings">
+                        <h2 class="mb-4">Settings</h2>
+                        <div class="card">
+                            <div class="card-header">
+                                Admin Account
+                            </div>
+                            <div class="card-body">
+                                <form id="adminSettingsForm">
+                                    <div class="mb-3">
+                                        <label for="adminEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="adminEmail">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="adminFirstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="adminFirstName">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="adminLastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="adminLastName">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="adminPassword" class="form-label">New Password</label>
+                                        <input type="password" class="form-control" id="adminPassword">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const loginContainer = document.getElementById('login');
+        const mainContainer = document.getElementById('main-container');
+        
+        // Navigation Elements
+        const dashboardLink = document.getElementById('dashboard-link');
+        const usersLink = document.getElementById('users-link');
+        const billingLink = document.getElementById('billing-link');
+        const settingsLink = document.getElementById('settings-link');
+        const logoutLink = document.getElementById('logout-link');
+        
+        // Content Sections
+        const dashboardSection = document.getElementById('dashboard');
+        const usersSection = document.getElementById('users');
+        const billingSection = document.getElementById('billing');
+        const settingsSection = document.getElementById('settings');
+        
+        // API Base URL
+        const API_BASE_URL = '/api';
+        
+        // Check if user is logged in
+        function checkAuth() {
+            const token = localStorage.getItem('adminToken');
+            if (!token) {
+                showLogin();
+                return;
+            }
+            
+            // Validate token
+            fetch(`${API_BASE_URL}/admin/validate`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    showDashboard();
+                    loadDashboardData();
+                } else {
+                    showLogin();
+                }
+            })
+            .catch(error => {
+                console.error('Auth error:', error);
+                showLogin();
+            });
+        }
+        
+        // Show login form
+        function showLogin() {
+            loginContainer.style.display = 'block';
+            mainContainer.style.display = 'none';
+        }
+        
+        // Show dashboard
+        function showDashboard() {
+            loginContainer.style.display = 'none';
+            mainContainer.style.display = 'block';
+            showSection(dashboardSection);
+            dashboardLink.classList.add('active');
+        }
+        
+        // Show a specific section
+        function showSection(section) {
+            // Hide all sections
+            dashboardSection.style.display = 'none';
+            usersSection.style.display = 'none';
+            billingSection.style.display = 'none';
+            settingsSection.style.display = 'none';
+            
+            // Remove active class from all links
+            dashboardLink.classList.remove('active');
+            usersLink.classList.remove('active');
+            billingLink.classList.remove('active');
+            settingsLink.classList.remove('active');
+            
+            // Show the selected section
+            section.style.display = 'block';
+        }
+        
+        // Load dashboard data
+        function loadDashboardData() {
+            const token = localStorage.getItem('adminToken');
+            
+            fetch(`${API_BASE_URL}/admin/dashboard`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('totalUsers').textContent = data.totalUsers;
+                document.getElementById('activeUsers').textContent = data.activeUsers;
+                document.getElementById('totalMessages').textContent = data.totalMessages;
+                document.getElementById('totalRevenue').textContent = `$${data.totalRevenue}`;
+            })
+            .catch(error => {
+                console.error('Error loading dashboard data:', error);
+            });
+        }
+        
+        // Event Listeners
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            fetch(`${API_BASE_URL}/admin/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.token) {
+                    localStorage.setItem('adminToken', data.token);
+                    showDashboard();
+                    loadDashboardData();
+                } else {
+                    loginError.textContent = data.message || 'Invalid credentials';
+                    loginError.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Login error:', error);
+                loginError.textContent = 'An error occurred. Please try again.';
+                loginError.style.display = 'block';
+            });
+        });
+        
+        // Navigation event listeners
+        dashboardLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showSection(dashboardSection);
+            dashboardLink.classList.add('active');
+            loadDashboardData();
+        });
+        
+        usersLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showSection(usersSection);
+            usersLink.classList.add('active');
+            loadUsers();
+        });
+        
+        billingLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showSection(billingSection);
+            billingLink.classList.add('active');
+            loadBillingRecords();
+        });
+        
+        settingsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showSection(settingsSection);
+            settingsLink.classList.add('active');
+            loadAdminSettings();
+        });
+        
+        logoutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminToken');
+            showLogin();
+        });
+        
+        // Load users data
+        function loadUsers() {
+            const token = localStorage.getItem('adminToken');
+            
+            fetch(`${API_BASE_URL}/admin/users`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(users => {
+                const usersTable = document.getElementById('usersTable');
+                usersTable.innerHTML = '';
+                
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.id}</td>
+                        <td>${user.firstName} ${user.lastName}</td>
+                        <td>${user.email}</td>
+                        <td>${user.phoneNumber || 'N/A'}</td>
+                        <td>${user.isActive ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>'}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary view-user" data-id="${user.id}">View</button>
+                            <button class="btn btn-sm ${user.isActive ? 'btn-warning' : 'btn-success'} toggle-status" data-id="${user.id}" data-status="${user.isActive}">
+                                ${user.isActive ? 'Deactivate' : 'Activate'}
+                            </button>
+                        </td>
+                    `;
+                    usersTable.appendChild(row);
+                });
+                
+                // Add event listeners to buttons
+                document.querySelectorAll('.toggle-status').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const userId = this.getAttribute('data-id');
+                        const currentStatus = this.getAttribute('data-status') === 'true';
+                        updateUserStatus(userId, !currentStatus);
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error loading users:', error);
+            });
+        }
+        
+        // Load billing records
+        function loadBillingRecords() {
+            const token = localStorage.getItem('adminToken');
+            
+            fetch(`${API_BASE_URL}/admin/billing`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(records => {
+                const billingTable = document.getElementById('billingTable');
+                billingTable.innerHTML = '';
+                
+                records.forEach(record => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${record.id}</td>
+                        <td>${record.userId}</td>
+                        <td>${record.billingPeriod}</td>
+                        <td>${record.messageCount}</td>
+                        <td>$${record.amountDue}</td>
+                        <td>${record.isPaid ? '<span class="badge bg-success">Paid</span>' : '<span class="badge bg-warning">Unpaid</span>'}</td>
+                    `;
+                    billingTable.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading billing records:', error);
+            });
+        }
+        
+        // Update user status
+        function updateUserStatus(userId, isActive) {
+            const token = localStorage.getItem('adminToken');
+            
+            fetch(`${API_BASE_URL}/admin/users/${userId}/status?isActive=${isActive}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    loadUsers();
+                } else {
+                    console.error('Error updating user status');
+                }
+            })
+            .catch(error => {
+                console.error('Error updating user status:', error);
+            });
+        }
+        
+        // Initialize
+        checkAuth();
+    </script>
+</body>
+</html>

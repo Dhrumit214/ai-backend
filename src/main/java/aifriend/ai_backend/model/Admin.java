@@ -1,43 +1,46 @@
 package aifriend.ai_backend.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user_preferences")
+@Table(name = "admins")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserPreferences {
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
-
-    @Column(name = "preferred_persona_id")
-    private Long preferredPersonaId;
-
-    @Column(name = "message_frequency", nullable = false)
-    private String messageFrequency = "DAILY";
-
-    @Column(name = "do_not_disturb")
-    private Boolean doNotDisturb = false;
-
-    @Column(name = "preferred_time_window", columnDefinition = "jsonb")
-    private String preferredTimeWindow;
-
+    
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+    
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+    
+    @Column(name = "first_name")
+    private String firstName;
+    
+    @Column(name = "last_name")
+    private String lastName;
+    
+    @Column(name = "role", nullable = false)
+    private String role = "ADMIN"; // ADMIN, SUPER_ADMIN
+    
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = true;
+    
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
+    
     @UpdateTimestamp
     @Column(name = "modified_at", nullable = false)
     private LocalDateTime modifiedAt;

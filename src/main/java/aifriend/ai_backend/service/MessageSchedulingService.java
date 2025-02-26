@@ -12,8 +12,6 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
 
-import aifriend.ai_backend.model.MessageFrequency;
-
 @Service
 public class MessageSchedulingService {
 
@@ -34,6 +32,9 @@ public class MessageSchedulingService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BillingService billingService;
 
     private final Random random = new Random();
 
@@ -156,17 +157,25 @@ public class MessageSchedulingService {
         twilioService.sendSms(user.getPhoneNumber(), aiResponse);
         
         // Save the message
-        Message message = new Message();
-        message.setUserId(user.getId());
+        Message message = new Message(
+            user.getId(),
+            initialMessage,
+            aiResponse,
+            persona.getName(),
+            "neutral"
+        );
         message.setPersonaId(persona.getId());
-        message.setUserMessage(initialMessage);
-        message.setAiResponse(aiResponse);
         message.setMessageType(MessageContentType.TEXT);
         messageService.saveMessage(message);
         
         // Update limits
         limits.incrementCounts();
         messageLimitsRepository.save(limits);
+        
+        // Record billable message for pay-as-you-go pricing
+        if (user.getPlanType() != PlanType.FREE) {
+            billingService.recordMessageSent(user.getId());
+        }
     }
 
     private String selectInitialMessage(Persona persona) {
@@ -177,5 +186,16 @@ public class MessageSchedulingService {
         
         // Fallback to a generic message
         return "Hey! How are you doing today?";
+    }
+
+    // Add this method to retrieve message limits for external services
+    public MessageLimits getMessageLimits(Long userId) {
+        return messageLimitsRepository.findByUserId(userId)
+            .orElseGet(() -> createDefaultMessageLimits(userId));
+    }
+
+    public boolean checkDailyLimit(Long userId) {
+        MessageLimits limits = getMessageLimits(userId);
+        return limits.getDailyCount() < limits.getMaxDailyMessages();
     }
 }

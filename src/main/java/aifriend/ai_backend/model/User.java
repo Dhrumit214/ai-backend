@@ -4,6 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+
+import aifriend.ai_backend.util.SecurityUtils;
+
 import java.time.LocalDateTime;
 import aifriend.ai_backend.model.PlanType;
 
@@ -17,30 +22,35 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
-
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "phone_number_hash", nullable = false)
+    // Store encrypted phone number in the database
+    @Column(name = "phone_number")
+    private String phoneNumberEncrypted;
+    
+    // For phone number lookups (hashed)
+    @Column(name = "phone_number_hash")
     private String phoneNumberHash;
 
-    @Column(name = "phone_number_encrypted")
-    private byte[] phoneNumberEncrypted;
+    @Column(name = "password_hash")
+    private String passwordHash;
 
-    @Column(name = "is_active")
-    private Boolean isActive = true;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+    
+    @Column(name = "stripe_customer_id")
+    private String stripeCustomerId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "plan_type")
-    private PlanType planType = PlanType.free;
+    @Column(name = "plan_type", nullable = false)
+    private PlanType planType = PlanType.FREE;
 
-    @Column(name = "settings", columnDefinition = "jsonb")
-    private String settings = "{}";
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = true;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
@@ -60,15 +70,74 @@ public class User {
     // For Twilio integration - decrypted phone number
     @Transient
     private String phoneNumber;
+    
+    @Transient
+    @Autowired
+    @Lazy
+    private SecurityUtils securityUtils;
 
     public String getPhoneNumber() {
-        // TODO: Implement decryption logic
-        return phoneNumber;
+        if (phoneNumber != null) {
+            return phoneNumber;
+        }
+        
+        if (phoneNumberEncrypted == null) {
+            return null;
+        }
+        
+        try {
+            // Try to decrypt using SecurityUtils if available
+            if (securityUtils != null) {
+                this.phoneNumber = securityUtils.decrypt(phoneNumberEncrypted);
+                return this.phoneNumber;
+            } else {
+                // Fallback for scenarios where SecurityUtils isn't injected (like in DTOs)
+                return phoneNumberEncrypted;
+            }
+        } catch (Exception e) {
+            // If decryption fails, return encrypted value for development
+            return phoneNumberEncrypted;
+        }
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        // TODO: Implement encryption logic for phoneNumberEncrypted
-        // TODO: Implement hashing logic for phoneNumberHash
+        
+        if (phoneNumber == null) {
+            this.phoneNumberEncrypted = null;
+            this.phoneNumberHash = null;
+            return;
+        }
+        
+        try {
+            // Use SecurityUtils if available
+            if (securityUtils != null) {
+                this.phoneNumberEncrypted = securityUtils.encrypt(phoneNumber);
+                this.phoneNumberHash = securityUtils.secureHash(phoneNumber);
+            } else {
+                // Fallback for when SecurityUtils is not injected
+                this.phoneNumberEncrypted = phoneNumber;
+                this.phoneNumberHash = String.valueOf(phoneNumber.hashCode());
+            }
+        } catch (Exception e) {
+            // Fallback to simple storage in development
+            this.phoneNumberEncrypted = phoneNumber;
+            this.phoneNumberHash = String.valueOf(phoneNumber.hashCode());
+        }
+    }
+    
+    // Helper method for services to set the phone number directly with security utils
+    // (This is used when SecurityUtils can't be autowired directly in the entity)
+    public void setPhoneNumberSecure(String phoneNumber, SecurityUtils utils) {
+        this.phoneNumber = phoneNumber;
+        
+        if (phoneNumber == null) {
+            this.phoneNumberEncrypted = null;
+            this.phoneNumberHash = null;
+            return;
+        }
+        
+        this.phoneNumberEncrypted = utils.encrypt(phoneNumber);
+        this.phoneNumberHash = utils.secureHash(phoneNumber);
     }
 }

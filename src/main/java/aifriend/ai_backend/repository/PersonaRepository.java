@@ -10,5 +10,4 @@ import java.util.List;
 public interface PersonaRepository extends JpaRepository<Persona, Long> {
     List<Persona> findByRequiredPlan(Persona.PlanType requiredPlan);
     List<Persona> findByIsActiveTrue();
-    Persona findByName(String name);
 }

@@ -21,4 +21,10 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     
     @Query("SELECT COUNT(m) FROM Message m WHERE m.userId = ?1 AND m.createdAt >= ?2")
     Long countMessagesSince(Long userId, LocalDateTime since);
+
+    List<Message> findByUserIdOrderByCreatedAtDesc(Long userId);
+
+    List<Message> findByPersonaId(Long personaId);
+    
+    long countByCreatedAtAfter(LocalDateTime dateTime);
 }
