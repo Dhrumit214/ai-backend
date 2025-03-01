@@ -151,6 +151,65 @@ public class SecurityUtils {
     }
     
     /**
+     * Encrypts data and returns the result as a byte array (for database storage)
+     */
+    public byte[] encryptToBytes(String data) {
+        try {
+            // Generate a random IV
+            byte[] iv = new byte[GCM_IV_LENGTH];
+            secureRandom.nextBytes(iv);
+            
+            // Create GCM parameters
+            GCMParameterSpec parameterSpec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
+            
+            // Initialize cipher
+            Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+            SecretKey secretKey = generateAESKey(encryptionKey);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, parameterSpec);
+            
+            // Encrypt
+            byte[] encryptedData = cipher.doFinal(data.getBytes(StandardCharsets.UTF_8));
+            
+            // Combine IV and encrypted data
+            ByteBuffer byteBuffer = ByteBuffer.allocate(iv.length + encryptedData.length);
+            byteBuffer.put(iv);
+            byteBuffer.put(encryptedData);
+            
+            return byteBuffer.array();
+        } catch (Exception e) {
+            throw new RuntimeException("Error encrypting data to bytes", e);
+        }
+    }
+    
+    /**
+     * Decrypts data from a byte array
+     */
+    public String decryptBytes(byte[] encryptedData) {
+        try {
+            // Extract IV
+            ByteBuffer byteBuffer = ByteBuffer.wrap(encryptedData);
+            byte[] iv = new byte[GCM_IV_LENGTH];
+            byteBuffer.get(iv);
+            
+            // Extract encrypted data
+            byte[] cipherText = new byte[byteBuffer.remaining()];
+            byteBuffer.get(cipherText);
+            
+            // Initialize cipher for decryption
+            Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+            SecretKey secretKey = generateAESKey(encryptionKey);
+            GCMParameterSpec parameterSpec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, parameterSpec);
+            
+            // Decrypt
+            byte[] decryptedData = cipher.doFinal(cipherText);
+            return new String(decryptedData, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new RuntimeException("Error decrypting byte data", e);
+        }
+    }
+    
+    /**
      * Generates a valid AES key from a string
      * AES requires keys of exactly 16, 24, or 32 bytes (128, 192, or 256 bits)
      */

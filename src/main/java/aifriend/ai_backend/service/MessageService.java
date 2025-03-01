@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Lazy;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -125,7 +126,7 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
-    public LocalDateTime getLastMessageTime(Long userId) {
+    public OffsetDateTime getLastMessageTime(Long userId) {
         Message lastMessage = messageRepository.findFirstByUserIdOrderByCreatedAtDesc(userId);
         return lastMessage != null ? lastMessage.getCreatedAt() : null;
     }
@@ -134,7 +135,7 @@ public class MessageService {
         // Since we now use a composite key, we need to find the message first to get its createdAt value
         Optional<Message> messageOpt = messageRepository.findByIdOrderByCreatedAtDesc(messageId);
         messageOpt.ifPresent(message -> {
-            message.setDeletedAt(LocalDateTime.now());
+            message.setDeletedAt(OffsetDateTime.now());
             messageRepository.save(message);
         });
     }

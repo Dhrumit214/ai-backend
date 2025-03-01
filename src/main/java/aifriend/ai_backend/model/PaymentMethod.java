@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "payment_methods")
@@ -43,14 +45,15 @@ public class PaymentMethod {
     @Column(name = "is_default", nullable = false)
     private Boolean isDefault = false;
     
-    @Column(name = "metadata", columnDefinition = "jsonb")
-    private String metadata;
+    @Column(name = "metadata", columnDefinition = "jsonb", nullable = false)
+    @JdbcTypeCode(SqlTypes.JSON)
+    private String metadata = "{}";
     
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
+    private OffsetDateTime createdAt;
     
     @UpdateTimestamp
     @Column(name = "modified_at", nullable = false)
-    private LocalDateTime modifiedAt;
+    private OffsetDateTime modifiedAt;
 }

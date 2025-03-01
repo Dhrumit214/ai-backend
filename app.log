@@ -1,0 +1,99 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< aifriend:ai-backend >-------------------------
+[INFO] Building ai-backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ ai-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ ai-backend ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ ai-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ ai-backend ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ ai-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.2:run (default-cli) < test-compile @ ai-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.2:run (default-cli) @ ai-backend ---
+[INFO] Attaching agents: []
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.2)
+
+2025-02-28T20:30:58.600-05:00  INFO 3663 --- [  restartedMain] a.ai_backend.AiBackendApplication        : Starting AiBackendApplication using Java 17.0.14 with PID 3663 (/Users/dhrumitkabariya/Downloads/ai-backend/target/classes started by dhrumitkabariya in /Users/dhrumitkabariya/Downloads/ai-backend)
+2025-02-28T20:30:58.601-05:00  INFO 3663 --- [  restartedMain] a.ai_backend.AiBackendApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-28T20:30:58.617-05:00  INFO 3663 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-28T20:30:58.617-05:00  INFO 3663 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-28T20:30:58.809-05:00  INFO 3663 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-28T20:30:58.827-05:00  INFO 3663 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 7 JPA repository interfaces.
+2025-02-28T20:30:58.991-05:00  INFO 3663 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-28T20:30:58.994-05:00  INFO 3663 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-28T20:30:58.994-05:00  INFO 3663 --- [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2025-02-28T20:30:59.006-05:00  INFO 3663 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-28T20:30:59.006-05:00  INFO 3663 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 389 ms
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+2025-02-28T20:30:59.050-05:00  INFO 3663 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-28T20:30:59.064-05:00  INFO 3663 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2025-02-28T20:30:59.071-05:00  INFO 3663 --- [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-28T20:30:59.099-05:00  INFO 3663 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-28T20:30:59.408-05:00  INFO 3663 --- [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@8402fc8
+2025-02-28T20:30:59.409-05:00  INFO 3663 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-28T20:30:59.439-05:00  WARN 3663 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-28T20:30:59.532-05:00  INFO 3663 --- [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-28T20:30:59.829-05:00  INFO 3663 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-28T20:30:59.830-05:00  INFO 3663 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-28T20:30:59.944-05:00  INFO 3663 --- [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+Hibernate: 
+    select
+        count(*) 
+    from
+        "admins" a1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        "personas" p1_0
+2025-02-28T20:31:00.254-05:00  WARN 3663 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-28T20:31:00.259-05:00  WARN 3663 --- [  restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: a3c25670-cefe-47df-b069-239a78643df3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-02-28T20:31:00.332-05:00  INFO 3663 --- [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b525c30, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34835a6b, org.springframework.security.web.context.SecurityContextHolderFilter@6251f45b, org.springframework.security.web.header.HeaderWriterFilter@3bcf561c, org.springframework.web.filter.CorsFilter@32dfcb70, org.springframework.security.web.authentication.logout.LogoutFilter@506e3354, aifriend.ai_backend.config.JwtAuthenticationFilter@11f017, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@778fead8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@78e8b535, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6c2bab9, org.springframework.security.web.session.SessionManagementFilter@22dcb6ae, org.springframework.security.web.access.ExceptionTranslationFilter@124a9077, org.springframework.security.web.access.intercept.AuthorizationFilter@1b0fd46]
+2025-02-28T20:31:00.389-05:00  INFO 3663 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-28T20:31:00.398-05:00  INFO 3663 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2025-02-28T20:31:00.402-05:00  INFO 3663 --- [  restartedMain] a.ai_backend.AiBackendApplication        : Started AiBackendApplication in 1.894 seconds (process running for 2.012)
+Hibernate: 
+    select
+        up1_0."id",
+        up1_0."created_at",
+        up1_0."do_not_disturb",
+        up1_0."message_frequency",
+        up1_0."modified_at",
+        up1_0."preferred_persona_id",
+        up1_0."preferred_time_window",
+        up1_0."user_id" 
+    from
+        "user_preferences" up1_0 
+    where
+        not(up1_0."do_not_disturb")
+2025-02-28T20:31:26.432-05:00  INFO 3663 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-28T20:31:26.437-05:00  INFO 3663 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-28T20:31:26.588-05:00  INFO 3663 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

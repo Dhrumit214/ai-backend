@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Profile;
 import lombok.Getter;
 import okhttp3.OkHttpClient;
 import java.util.concurrent.TimeUnit;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Configuration
 @Getter
@@ -53,5 +56,23 @@ public class AppConfig {
 
     public String getTwilioPhoneNumber() {
         return twilioPhoneNumber;
+    }
+    
+    /**
+     * Configure JSON object mapper for handling JSONB types
+     */
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return objectMapper;
+    }
+    
+    /**
+     * Customize Jackson to handle JSON data types properly
+     */
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
+        return builder -> builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 }

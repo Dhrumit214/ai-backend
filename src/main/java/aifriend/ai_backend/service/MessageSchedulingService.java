@@ -7,8 +7,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
@@ -42,6 +43,7 @@ public class MessageSchedulingService {
     @Scheduled(fixedRate = 900000)
     @Transactional
     public void scheduleMessages() {
+        OffsetDateTime nowOffset = OffsetDateTime.now();
         LocalDateTime now = LocalDateTime.now();
         
         // Get all active user preferences
@@ -78,7 +80,7 @@ public class MessageSchedulingService {
 
         // Get user's preferred persona
         Persona persona = personaRepository.findById(prefs.getPreferredPersonaId())
-            .orElseGet(() -> personaRepository.findByRequiredPlan(Persona.PlanType.free)
+            .orElseGet(() -> personaRepository.findByRequiredPlan(PlanType.FREE)
                 .stream()
                 .findFirst()
                 .orElse(null));
@@ -114,15 +116,16 @@ public class MessageSchedulingService {
 
     private boolean shouldSendMessage(UserPreferences prefs, LocalDateTime now) {
         // Get last message timestamp for this user
-        LocalDateTime lastMessageTime = messageService.getLastMessageTime(prefs.getUserId());
+        OffsetDateTime lastMessageTime = messageService.getLastMessageTime(prefs.getUserId());
         
         if (lastMessageTime == null) {
             return true;
         }
 
-        long hoursSinceLastMessage = java.time.Duration.between(lastMessageTime, now).toHours();
+        OffsetDateTime nowOffset = OffsetDateTime.now();
+        long hoursSinceLastMessage = java.time.Duration.between(lastMessageTime, nowOffset).toHours();
 
-        MessageFrequency frequency = MessageFrequency.valueOf(prefs.getMessageFrequency());
+        MessageFrequency frequency = prefs.getMessageFrequency();
         return switch (frequency) {
             case DAILY -> hoursSinceLastMessage >= 24;
             case WEEKLY -> hoursSinceLastMessage >= 168;

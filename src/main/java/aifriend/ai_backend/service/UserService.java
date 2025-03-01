@@ -6,6 +6,7 @@ import aifriend.ai_backend.dto.RegisterRequest;
 import aifriend.ai_backend.model.User;
 import aifriend.ai_backend.model.PlanType;
 import aifriend.ai_backend.model.UserPreferences;
+import aifriend.ai_backend.model.MessageFrequency;
 import aifriend.ai_backend.repository.UserPreferencesRepository;
 import aifriend.ai_backend.repository.UserRepository;
 import aifriend.ai_backend.util.JwtUtil;
@@ -128,7 +129,7 @@ public class UserService {
         // Create default user preferences
         UserPreferences preferences = new UserPreferences();
         preferences.setUserId(user.getId());
-        preferences.setMessageFrequency("DAILY");
+        preferences.setMessageFrequency(MessageFrequency.DAILY);
         preferences.setDoNotDisturb(false);
         userPreferencesRepository.save(preferences);
         

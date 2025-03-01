@@ -1,0 +1,125 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< aifriend:ai-backend >-------------------------
+[INFO] Building ai-backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ ai-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ ai-backend ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ ai-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ ai-backend ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ ai-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.2:run (default-cli) < test-compile @ ai-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.2:run (default-cli) @ ai-backend ---
+[INFO] Attaching agents: []
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.2)
+
+2025-02-28T20:32:12.393-05:00  INFO 3891 --- [  restartedMain] a.ai_backend.AiBackendApplication        : Starting AiBackendApplication using Java 17.0.14 with PID 3891 (/Users/dhrumitkabariya/Downloads/ai-backend/target/classes started by dhrumitkabariya in /Users/dhrumitkabariya/Downloads/ai-backend)
+2025-02-28T20:32:12.394-05:00  INFO 3891 --- [  restartedMain] a.ai_backend.AiBackendApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-28T20:32:12.411-05:00  INFO 3891 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-28T20:32:12.411-05:00  INFO 3891 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-28T20:32:12.603-05:00  INFO 3891 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-28T20:32:12.622-05:00  INFO 3891 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 7 JPA repository interfaces.
+2025-02-28T20:32:12.787-05:00  INFO 3891 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-28T20:32:12.790-05:00  INFO 3891 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-28T20:32:12.791-05:00  INFO 3891 --- [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2025-02-28T20:32:12.802-05:00  INFO 3891 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-28T20:32:12.802-05:00  INFO 3891 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 391 ms
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+2025-02-28T20:32:12.848-05:00  INFO 3891 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-28T20:32:12.863-05:00  INFO 3891 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2025-02-28T20:32:12.870-05:00  INFO 3891 --- [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-28T20:32:12.897-05:00  INFO 3891 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-28T20:32:13.113-05:00  INFO 3891 --- [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@563525f4
+2025-02-28T20:32:13.113-05:00  INFO 3891 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-28T20:32:13.139-05:00  WARN 3891 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-28T20:32:13.231-05:00  INFO 3891 --- [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-28T20:32:13.528-05:00  INFO 3891 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-28T20:32:13.796-05:00 ERROR 3891 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [tags] in table [`messages`]; found [_text (Types#ARRAY)], but expecting ["text[]" (Types#UNKNOWN(601008104))]
+2025-02-28T20:32:13.797-05:00  WARN 3891 --- [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [tags] in table [`messages`]; found [_text (Types#ARRAY)], but expecting ["text[]" (Types#UNKNOWN(601008104))]
+2025-02-28T20:32:13.798-05:00  INFO 3891 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-28T20:32:13.965-05:00  INFO 3891 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-28T20:32:13.967-05:00  INFO 3891 --- [  restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-02-28T20:32:13.981-05:00  INFO 3891 --- [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-02-28T20:32:13.993-05:00 ERROR 3891 --- [  restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [tags] in table [`messages`]; found [_text (Types#ARRAY)], but expecting ["text[]" (Types#UNKNOWN(601008104))]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773) ~[spring-beans-6.1.3.jar:6.1.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.3.jar:6.1.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.1.3.jar:6.1.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.3.jar:6.1.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.3.jar:6.1.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.3.jar:6.1.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.3.jar:6.1.3]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231) ~[spring-context-6.1.3.jar:6.1.3]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949) ~[spring-context-6.1.3.jar:6.1.3]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.3.jar:6.1.3]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.2.jar:3.2.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.2.jar:3.2.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.2.jar:3.2.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.2.jar:3.2.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.2.jar:3.2.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.2.jar:3.2.2]
+	at aifriend.ai_backend.AiBackendApplication.main(AiBackendApplication.java:11) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.2.2.jar:3.2.2]
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [tags] in table [`messages`]; found [_text (Types#ARRAY)], but expecting ["text[]" (Types#UNKNOWN(601008104))]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421) ~[spring-orm-6.1.3.jar:6.1.3]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.3.jar:6.1.3]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.1.3.jar:6.1.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820) ~[spring-beans-6.1.3.jar:6.1.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769) ~[spring-beans-6.1.3.jar:6.1.3]
+	... 21 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [tags] in table [`messages`]; found [_text (Types#ARRAY)], but expecting ["text[]" (Types#UNKNOWN(601008104))]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateColumnType(AbstractSchemaValidator.java:165) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:152) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:295) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.3.jar:6.1.3]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.1.3.jar:6.1.3]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.3.jar:6.1.3]
+	... 25 common frames omitted
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.373 s
+[INFO] Finished at: 2025-02-28T20:32:14-05:00
+[INFO] ------------------------------------------------------------------------

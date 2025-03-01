@@ -5,10 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import java.time.LocalDateTime;
+import org.hibernate.annotations.UpdateTimestamp; 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.io.IOException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @Entity
 @Table(name = "personas")
@@ -29,48 +35,115 @@ public class Persona {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "sample_messages", columnDefinition = "text")
-    private String sampleMessagesJson;
+    @Column(name = "personality_traits")
+    @JdbcTypeCode(SqlTypes.JSON)
+    private String personalityTraitsJson = "[]";
+    
+    @Column(name = "sample_messages")
+    @JdbcTypeCode(SqlTypes.JSON)
+    private String sampleMessagesJson = "[]";
+    
+    @Column(name = "proactive_templates")
+    @JdbcTypeCode(SqlTypes.JSON)
+    private String proactiveTemplatesJson = "[]";
+    
+    @Transient
+    private List<String> personalityTraits;
+    
+    @Transient
+    private List<String> sampleMessages;
+    
+    @Transient
+    private List<String> proactiveTemplates;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "required_plan")
-    private PlanType requiredPlan = PlanType.free;
+    private PlanType requiredPlan = PlanType.FREE;
+    
+    @Version
+    @Column(name = "version", nullable = false)
+    private Integer version = 1;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
+    private OffsetDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name = "modified_at", nullable = false)
-    private LocalDateTime modifiedAt;
+    private OffsetDateTime modifiedAt;
 
-    public enum PlanType {
-        free,
-        premium,
-        enterprise
+    // Helper methods for JSON fields
+    public List<String> getPersonalityTraits() {
+        if (personalityTraitsJson == null || personalityTraitsJson.equals("[]")) {
+            return new ArrayList<>();
+        }
+        
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(personalityTraitsJson, new TypeReference<List<String>>() {});
+        } catch (IOException e) {
+            return new ArrayList<>();
+        }
     }
-
-    // Constructor for setting up default personas
-    public Persona(String name, String systemPrompt, String description, String sampleMessagesJson) {
-        this.name = name;
-        this.systemPrompt = systemPrompt;
-        this.description = description;
-        this.sampleMessagesJson = sampleMessagesJson;
-        this.isActive = true;
-        this.requiredPlan = PlanType.free;
+    
+    public void setPersonalityTraits(List<String> traits) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            this.personalityTraitsJson = objectMapper.writeValueAsString(traits);
+        } catch (IOException e) {
+            this.personalityTraitsJson = "[]";
+        }
     }
-
-    // Helper method to get the sample messages as a List
+    
     public List<String> getSampleMessages() {
-        if (sampleMessagesJson == null || sampleMessagesJson.isEmpty()) {
+        if (sampleMessagesJson == null || sampleMessagesJson.equals("[]")) {
             return Arrays.asList("Hey there! How's your day going?");
         }
         
-        // Simple parsing of the JSON array string (basic implementation)
-        String cleaned = sampleMessagesJson.replaceAll("\\[|\\]|\\\"", "");
-        return Arrays.asList(cleaned.split(","));
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(sampleMessagesJson, new TypeReference<List<String>>() {});
+        } catch (IOException e) {
+            return Arrays.asList("Hey there! How's your day going?");
+        }
+    }
+    
+    public void setSampleMessages(List<String> messages) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            this.sampleMessagesJson = objectMapper.writeValueAsString(messages);
+        } catch (IOException e) {
+            this.sampleMessagesJson = "[]";
+        }
+    }
+    
+    public List<String> getProactiveTemplates() {
+        if (proactiveTemplatesJson == null || proactiveTemplatesJson.equals("[]")) {
+            return new ArrayList<>();
+        }
+        
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(proactiveTemplatesJson, new TypeReference<List<String>>() {});
+        } catch (IOException e) {
+            return new ArrayList<>();
+        }
+    }
+    
+    public void setProactiveTemplates(List<String> templates) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            this.proactiveTemplatesJson = objectMapper.writeValueAsString(templates);
+        } catch (IOException e) {
+            this.proactiveTemplatesJson = "[]";
+        }
+    }
+    
+    // Helper method to get the sample messages (for backward compatibility)
+    public List<String> getSampleMessagesList() {
+        return getSampleMessages();
     }
 }

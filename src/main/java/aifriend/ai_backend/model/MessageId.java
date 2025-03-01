@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 /**
  * Composite primary key for the Message entity
@@ -16,5 +16,5 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class MessageId implements Serializable {
     private Long id;
-    private LocalDateTime createdAt;
+    private OffsetDateTime createdAt;
 }
