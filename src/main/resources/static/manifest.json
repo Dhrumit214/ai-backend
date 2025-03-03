@@ -1,0 +1,21 @@
+{
+  "name": "AI Friend",
+  "short_name": "AI Friend",
+  "description": "Your personal AI friend that sends mood-boosting messages on your schedule",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9FAFB",
+  "theme_color": "#3B82F6",
+  "icons": [
+    {
+      "src": "images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
