@@ -5,11 +5,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize components
     initThemeToggle();
     initPersonaCards();
-    initDemoChat();
+    // initDemoChat(); // Removed as demo section was removed
     initOnboarding();
     initNavbarScroll();
     initFormValidation();
     initFeedbackForm();
+    initAccessibility();
+    
+    // Add loading indicators to buttons
+    initLoadingIndicators();
     
     // Track analytics (if analytics API is available)
     if (typeof gtag !== 'undefined') {
@@ -25,8 +29,8 @@ function initThemeToggle() {
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     const currentTheme = localStorage.getItem('theme');
     
-    // Set initial theme based on local storage or system preference
-    if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+    // Set initial theme to light mode by default, or use saved preference if exists
+    if (currentTheme === 'dark') {
         document.body.classList.add('dark-mode');
         themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
     } else {
@@ -51,9 +55,10 @@ function initThemeToggle() {
 }
 
 /**
- * Initialize persona card selection in signup form
+ * Initialize persona card selection in signup form and persona section
  */
 function initPersonaCards() {
+    // Signup form persona cards
     const personaCards = document.querySelectorAll('.persona-card');
     const personaIdInput = document.getElementById('personaId');
     
@@ -72,6 +77,65 @@ function initPersonaCards() {
     if (personaCards.length > 0) {
         personaCards[0].classList.add('selected');
     }
+    
+    // Make persona showcase cards clickable
+    const personaShowcaseCards = document.querySelectorAll('.persona-showcase');
+    
+    personaShowcaseCards.forEach((card, index) => {
+        // Add hover effect
+        card.style.cursor = 'pointer';
+        card.classList.add('transition-transform');
+        
+        // Add click event
+        card.addEventListener('click', function() {
+            // Scroll to signup section
+            const signupSection = document.getElementById('signup');
+            if (signupSection) {
+                signupSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Pre-select the corresponding persona in the signup form
+                setTimeout(() => {
+                    const signupPersonaCards = document.querySelectorAll('.persona-selection .persona-card');
+                    if (signupPersonaCards[index]) {
+                        // Clear previous selection
+                        signupPersonaCards.forEach(c => c.classList.remove('selected'));
+                        
+                        // Set new selection
+                        signupPersonaCards[index].classList.add('selected');
+                        personaIdInput.value = signupPersonaCards[index].getAttribute('data-persona-id');
+                    }
+                }, 800); // Delay to allow smooth scrolling to complete
+            }
+        });
+    });
+    
+    // Make persona card buttons clickable
+    const personaButtons = document.querySelectorAll('.persona-showcase .card-footer button');
+    
+    personaButtons.forEach((button, index) => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent triggering the card click event
+            
+            // Scroll to signup section
+            const signupSection = document.getElementById('signup');
+            if (signupSection) {
+                signupSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Pre-select the corresponding persona in the signup form
+                setTimeout(() => {
+                    const signupPersonaCards = document.querySelectorAll('.persona-selection .persona-card');
+                    if (signupPersonaCards[index]) {
+                        // Clear previous selection
+                        signupPersonaCards.forEach(c => c.classList.remove('selected'));
+                        
+                        // Set new selection
+                        signupPersonaCards[index].classList.add('selected');
+                        personaIdInput.value = signupPersonaCards[index].getAttribute('data-persona-id');
+                    }
+                }, 800); // Delay to allow smooth scrolling to complete
+            }
+        });
+    });
 }
 
 /**
@@ -171,12 +235,17 @@ function initOnboarding() {
     });
     
     doneBtn.addEventListener('click', () => {
+        closeOnboardingModal();
+    });
+    
+    // Close modal function
+    function closeOnboardingModal() {
         const modalInstance = bootstrap.Modal.getInstance(onboardingModal);
         modalInstance.hide();
         
         // Store that user has seen onboarding
         localStorage.setItem('onboardingCompleted', 'true');
-    });
+    }
     
     // Update buttons based on slide
     carousel.addEventListener('slide.bs.carousel', event => {
@@ -193,6 +262,20 @@ function initOnboarding() {
         } else {
             nextBtn.style.display = 'inline-block';
             doneBtn.style.display = 'none';
+        }
+    });
+    
+    // Add keyboard navigation (Escape key closes modal)
+    onboardingModal.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeOnboardingModal();
+        }
+    });
+    
+    // Add click handler for backdrop clicks
+    onboardingModal.addEventListener('click', function(event) {
+        if (event.target === onboardingModal) {
+            closeOnboardingModal();
         }
     });
     
@@ -323,6 +406,78 @@ function initFeedbackForm() {
             });
         });
     }
+}
+
+/**
+ * Initialize accessibility features
+ */
+function initAccessibility() {
+    // Add proper ARIA labels to all interactive elements
+    const interactiveElements = document.querySelectorAll('button, a, input, select, textarea');
+    
+    interactiveElements.forEach(element => {
+        // Add role where needed
+        if (element.tagName === 'A' && !element.getAttribute('href')) {
+            element.setAttribute('role', 'button');
+        }
+        
+        // Make sure all buttons have aria-label if they don't have text
+        if ((element.tagName === 'BUTTON' || element.getAttribute('role') === 'button') && 
+            element.innerText.trim() === '' && !element.getAttribute('aria-label')) {
+            
+            // Try to find an icon and use its class as label
+            const icon = element.querySelector('i.fas, i.fab, i.far');
+            if (icon) {
+                const iconClass = Array.from(icon.classList)
+                    .find(cls => cls.startsWith('fa-'))
+                    ?.replace('fa-', '') || 'button';
+                element.setAttribute('aria-label', iconClass);
+            } else {
+                element.setAttribute('aria-label', 'button');
+            }
+        }
+        
+        // Add aria-required to required form elements
+        if (element.required) {
+            element.setAttribute('aria-required', 'true');
+        }
+    });
+    
+    // Make all images have proper alt text
+    const images = document.querySelectorAll('img:not([alt])');
+    images.forEach(img => {
+        // Try to generate alt text from image src filename
+        const filename = img.src.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
+        img.setAttribute('alt', filename || 'Image');
+    });
+}
+
+/**
+ * Initialize loading indicators for forms
+ */
+function initLoadingIndicators() {
+    const buttons = document.querySelectorAll('button[type="submit"], .signup-submit');
+    
+    buttons.forEach(button => {
+        const form = button.closest('form');
+        if (form) {
+            form.addEventListener('submit', function() {
+                if (form.checkValidity()) {
+                    // Add loading state
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Loading...';
+                    button.disabled = true;
+                    
+                    // For demo purposes, restore button after 2 seconds
+                    // In production, this would happen after form submission completes
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                    }, 2000);
+                }
+            });
+        }
+    });
 }
 
 /**

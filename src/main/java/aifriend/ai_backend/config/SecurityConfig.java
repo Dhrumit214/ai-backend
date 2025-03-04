@@ -39,6 +39,9 @@ public class SecurityConfig {
                 .requestMatchers("/api/admin/login").permitAll()
                 .requestMatchers("/api/personas").permitAll()
                 .requestMatchers("/api/status").permitAll()
+                // Static resources
+                .requestMatchers("/", "/index.html", "/css/**", "/js/**", "/images/**", "/dashboard.html", 
+                    "/manifest.json", "/service-worker.js", "/*.ico", "/*.svg", "/favicon.ico").permitAll()
                 // Admin endpoints
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 // Protected endpoints

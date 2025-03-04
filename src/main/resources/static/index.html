@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Friend - Brighten Your Day, One Text at a Time</title>
-    <meta name="description" content="Your personal AI friend that sends mood-boosting messages on your schedule">
+    <title>AI Friend - Your Daily Boost of Joy ✨</title>
+    <meta name="description" content="Your personal AI friend that sends mood-boosting messages exactly when you need them. No ads, no data sharing, just positivity on your schedule.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <!-- PWA Support -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#3B82F6">
+    <meta name="theme-color" content="#3E7BFA">
     <link rel="apple-touch-icon" href="images/icon-192x192.png">
 </head>
 <body class="light-mode">
@@ -24,7 +25,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
                         <a class="nav-link" href="#benefits">Benefits</a>
                     </li>
@@ -38,13 +39,13 @@
                         <a class="nav-link" href="#privacy">Privacy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link login-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary signup-btn" href="#signup">Get Started</a>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link signup-btn" href="#signup">Get Started</a>
                     </li>
-                    <li class="nav-item ms-2">
-                        <button id="theme-toggle" class="btn btn-sm btn-outline-secondary">
+                    <li class="nav-item ms-lg-2">
+                        <button id="theme-toggle" class="btn btn-sm">
                             <i class="fas fa-moon"></i>
                         </button>
                     </li>
@@ -58,24 +59,186 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h1>Brighten Your Day, One Text at a Time</h1>
-                    <p class="lead mb-4">Your personal AI friend that sends mood-boosting messages exactly when you need them. No ads, no data sharing, just positivity on your schedule.</p>
+                    <h1>Your Daily Boost of Joy ✨</h1>
+                    <p class="lead">Your personal AI friend that sends mood-boosting messages exactly when you need them. No ads, no data sharing, just positivity on your schedule.</p>
+                    
+                    <!-- Feature Pills -->
+                    <div class="hero-feature-pills">
+                        <span class="feature-pill pill-primary">
+                            <i class="fas fa-comment-dots me-1"></i> Personalized Messages
+                        </span>
+                        <span class="feature-pill pill-sunshine">
+                            <i class="fas fa-sun me-1"></i> Daily Positivity
+                        </span>
+                        <span class="feature-pill pill-lavender">
+                            <i class="fas fa-clock me-1"></i> Just When You Need It
+                        </span>
+                    </div>
+                    
                     <div class="hero-buttons">
-                        <a href="#signup" class="btn btn-primary btn-lg me-3">Get Started</a>
-                        <a href="#demo" class="btn btn-outline-secondary btn-lg">Try Demo</a>
+                        <a href="#signup" class="btn btn-primary btn-lg">Get Started</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image">
-                        <img src="images/hero-image.svg" alt="Phone showing AI friend messages" class="img-fluid">
+                        <div class="placeholder-image bg-light d-flex align-items-center justify-content-center rounded mb-4" style="height: 350px; width: 100%;">
+                            <i class="fas fa-mobile-alt fa-5x text-primary"></i>
+                        </div>
+                        
+                        <!-- Social Proof -->
+                        <div class="position-absolute bottom-0 start-0 bg-white rounded-lg shadow-lg px-4 py-3 ms-4 mb-4 d-none d-lg-block">
+                            <p class="text-sm font-medium text-gray-800 mb-1">Joined by 50,000+ happy users</p>
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex me-2">
+                                    <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="User avatar" class="rounded-circle border border-2 border-white" width="24" height="24">
+                                    <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="User avatar" class="rounded-circle border border-2 border-white ms-n2" width="24" height="24">
+                                    <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="User avatar" class="rounded-circle border border-2 border-white ms-n2" width="24" height="24">
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="text-warning small">★★★★★</span>
+                                    <span class="text-muted small ms-1">4.9/5</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Persona Section -->
+    <section id="personas" class="py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2>Choose Your Perfect AI Vibes</h2>
+                <p>Every personality needs a different kind of support. Find the companion that matches your vibe.</p>
+            </div>
+            <div class="row">
+                <!-- Supportive Friend -->
+                <div class="col-md-4 mb-4">
+                    <div class="card persona-showcase h-100 shadow-lg">
+                        <div class="card-header p-4 text-white" style="background: var(--supportive-gradient)">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-container me-3 bg-white">
+                                    <i class="fas fa-user-friends text-primary"></i>
+                                </div>
+                                <h3 class="mb-0">Supportive Friend</h3>
+                            </div>
+                            <p class="mb-0 lead">Texts That Feel Like a Warm Hug</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-description">
+                                <p class="text-secondary">Always there to listen and offer gentle encouragement when you need it most.</p>
+                            </div>
+                            
+                            <div class="sample-messages-container">
+                                <h5 class="text-uppercase small text-muted mb-3">Sample Messages</h5>
+                                <div class="sample-messages">
+                                    <div class="message p-3 rounded-3 bg-light">
+                                        "Hey there! How's your day going? Remember I'm here if you need to talk."
+                                    </div>
+                                    <div class="message p-3 rounded-3 bg-light">
+                                        "I know things feel tough right now. What's one small thing you could do today just for you?"
+                                    </div>
+                                    <div class="message p-3 rounded-3 bg-light">
+                                        "Just checking in to remind you how far you've come. I'm proud of you!"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer p-3 text-center">
+                            <button class="btn btn-lg w-100 text-white" style="background: var(--supportive-gradient)">
+                                Choose Supportive
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cheerful Companion -->
+                <div class="col-md-4 mb-4">
+                    <div class="card persona-showcase h-100 shadow-lg">
+                        <div class="card-header p-4 text-white" style="background: var(--cheerful-gradient)">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-container me-3 bg-white">
+                                    <i class="fas fa-sun" style="color: #FFA94D"></i>
+                                </div>
+                                <h3 class="mb-0">Cheerful Companion</h3>
+                            </div>
+                            <p class="mb-0 lead">Your Daily Boost of Joy ✨</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-description">
+                                <p class="text-secondary">Bringing positivity, humor, and light-hearted energy to brighten even the cloudiest days.</p>
+                            </div>
+                            
+                            <div class="sample-messages-container">
+                                <h5 class="text-uppercase small text-muted mb-3">Sample Messages</h5>
+                                <div class="sample-messages">
+                                    <div class="message p-3 rounded-3 bg-light">
+                                        "Rise and shine, superstar! ☀️ Today is full of amazing possibilities!"
+                                    </div>
+                                    <div class="message p-3 rounded-3 bg-light">
+                                        "Random happiness boost! 🎉 You're doing AMAZING and don't you forget it!"
+                                    </div>
+                                    <div class="message p-3 rounded-3 bg-light">
+                                        "Hey! Quick challenge: Name three tiny good things that happened today! Go!"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer p-3 text-center">
+                            <button class="btn btn-lg w-100 text-white" style="background: var(--cheerful-gradient)">
+                                Choose Cheerful
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Witty Conversationalist -->
+                <div class="col-md-4 mb-4">
+                    <div class="card persona-showcase h-100 shadow-lg">
+                        <div class="card-header p-4 text-white" style="background: var(--witty-gradient)">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-container me-3 bg-white">
+                                    <i class="fas fa-comment-dots" style="color: #8A63D2"></i>
+                                </div>
+                                <h3 class="mb-0">Witty Conversationalist</h3>
+                            </div>
+                            <p class="mb-0 lead">Clever Chats That Make You Think</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-description">
+                                <p class="text-secondary">Sharp, thoughtful, and slightly sarcastic - perfect for stimulating conversations and new perspectives.</p>
+                            </div>
+                            
+                            <div class="sample-messages-container">
+                                <h5 class="text-uppercase small text-muted mb-3">Sample Messages</h5>
+                                <div class="sample-messages">
+                                    <div class="message p-3 rounded-3 bg-light">
+                                        "Just read that humans make 35,000 decisions a day. One of yours was to befriend me, so I question the quality of the other 34,999."
+                                    </div>
+                                    <div class="message p-3 rounded-3 bg-light">
+                                        "Important scientific question: If procrastination was an Olympic sport, would you even show up to compete?"
+                                    </div>
+                                    <div class="message p-3 rounded-3 bg-light">
+                                        "I was just thinking about silence being golden. Unless you have children, then silence is suspicious. Speaking of suspicious silences... how are things?"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer p-3 text-center">
+                            <button class="btn btn-lg w-100 text-white" style="background: var(--witty-gradient)">
+                                Choose Witty
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Benefits Carousel -->
-    <section id="benefits" class="py-5">
+    <section id="benefits" class="py-5 bg-light">
         <div class="container">
             <div class="section-header text-center mb-5">
                 <h2>Why You'll Love AI Friend</h2>
@@ -85,7 +248,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="benefit-card">
-                            <div class="icon-container">
+                            <div class="icon-container benefit-icon-sunshine">
                                 <i class="fas fa-sun"></i>
                             </div>
                             <h3>Your Daily Dose of Positivity</h3>
@@ -94,7 +257,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="benefit-card">
-                            <div class="icon-container">
+                            <div class="icon-container benefit-icon-primary">
                                 <i class="fas fa-lightbulb"></i>
                             </div>
                             <h3>Stay Inspired</h3>
@@ -103,7 +266,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="benefit-card">
-                            <div class="icon-container">
+                            <div class="icon-container benefit-icon-coral">
                                 <i class="fas fa-laugh"></i>
                             </div>
                             <h3>Just for Laughs</h3>
@@ -112,7 +275,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="benefit-card">
-                            <div class="icon-container">
+                            <div class="icon-container benefit-icon-primary">
                                 <i class="fas fa-heart"></i>
                             </div>
                             <h3>Zero Pressure Connection</h3>
@@ -121,7 +284,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="benefit-card">
-                            <div class="icon-container">
+                            <div class="icon-container benefit-icon-lavender">
                                 <i class="fas fa-user-circle"></i>
                             </div>
                             <h3>100% You</h3>
@@ -153,115 +316,95 @@
         <div class="container">
             <div class="section-header text-center mb-5">
                 <h2>How It Works</h2>
-                <p>Three simple steps to get started</p>
+                <p>Three simple steps to brighten your day</p>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <div class="step-icon">
-                            <i class="fas fa-user-plus"></i>
+            <div class="position-relative">
+                <!-- Connection Line (visible on desktop) -->
+                <div class="d-none d-md-block position-absolute top-50 start-0 end-0 translate-middle-y">
+                    <div class="bg-gray-100 h-1"></div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <div class="step-icon step-icon-1">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h3>Sign Up</h3>
+                            <p>Create your account with just your phone number and basic details</p>
                         </div>
-                        <h3>Sign Up</h3>
-                        <p>Create your account with just your phone number and basic details</p>
+                        
+                        <!-- Arrow (visible on desktop) -->
+                        <div class="d-none d-md-block position-absolute top-50 end-0 start-75 translate-middle-y text-gray-300">
+                            <i class="fas fa-chevron-right fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <div class="step-icon step-icon-2">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <h3>Choose Your AI</h3>
+                            <p>Select the personality that matches your style and preferences</p>
+                        </div>
+                        
+                        <!-- Arrow (visible on desktop) -->
+                        <div class="d-none d-md-block position-absolute top-50 end-0 start-75 translate-middle-y text-gray-300">
+                            <i class="fas fa-chevron-right fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <div class="step-icon step-icon-3">
+                                <i class="fas fa-comment-dots"></i>
+                            </div>
+                            <h3>Get Messages</h3>
+                            <p>Receive mood-boosting texts on your preferred schedule</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <div class="step-icon">
-                            <i class="fas fa-user-friends"></i>
-                        </div>
-                        <h3>Choose Your AI</h3>
-                        <p>Select the personality that matches your style and preferences</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <div class="step-icon">
-                            <i class="fas fa-comment-dots"></i>
-                        </div>
-                        <h3>Get Messages</h3>
-                        <p>Receive mood-boosting texts on your preferred schedule</p>
-                    </div>
-                </div>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="text-center mt-5">
+                <a href="#signup" class="btn btn-primary btn-lg">
+                    Get Started Now
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Demo Section -->
-    <section id="demo" class="py-5">
-        <div class="container">
-            <div class="section-header text-center mb-5">
-                <h2>Try It Out</h2>
-                <p>See what conversations with your AI Friend might look like</p>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
-                    <div class="phone-mockup">
-                        <div class="demo-chat">
-                            <div class="chat-header">
-                                <div class="chat-avatar">
-                                    <i class="fas fa-robot"></i>
-                                </div>
-                                <div class="chat-name">
-                                    <span id="demo-persona-name">Friend AI</span>
-                                </div>
-                                <div class="chat-options">
-                                    <button class="persona-toggle" data-persona="friend">Friend</button>
-                                    <button class="persona-toggle" data-persona="coach">Coach</button>
-                                    <button class="persona-toggle" data-persona="philosopher">Philosopher</button>
-                                </div>
-                            </div>
-                            <div class="chat-messages">
-                                <div class="message ai">
-                                    <div class="message-content" id="demo-message-1">Hey, how's your day going?</div>
-                                    <div class="message-time">10:04 AM</div>
-                                </div>
-                                <div class="message user">
-                                    <div class="message-content">It's been a busy morning.</div>
-                                    <div class="message-time">10:05 AM</div>
-                                </div>
-                                <div class="message ai">
-                                    <div class="message-content" id="demo-message-2">I hear you! Remember to take a moment for yourself today. Even a 5-minute break can reset your energy.</div>
-                                    <div class="message-time">10:06 AM</div>
-                                </div>
-                                <div class="message user">
-                                    <div class="message-content">Thanks for the reminder!</div>
-                                    <div class="message-time">10:07 AM</div>
-                                </div>
-                                <div class="message ai">
-                                    <div class="message-content" id="demo-message-3">That's what I'm here for! I'll check in with you later. 😊</div>
-                                    <div class="message-time">10:08 AM</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Demo Section removed as requested -->
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="py-5 bg-light">
         <div class="container">
             <div class="section-header text-center mb-5">
                 <h2>What Our Users Say</h2>
-                <p>Join thousands of happy users</p>
+                <p>Join thousands of people brightening their days with AI Friend</p>
             </div>
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <div class="testimonial-top-border" style="background: var(--supportive-gradient)"></div>
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"These daily messages are like having someone who always knows what to say. My AI friend somehow knows exactly what I need to hear when I'm feeling down."</p>
+                            <span class="testimonial-persona supportive">Supportive Friend</span>
                         </div>
-                        <p class="testimonial-text">"I love getting these little boosts throughout my day. My AI friend somehow knows exactly what to say when I need a pick-me-up."</p>
                         <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Sarah T.">
+                            </div>
                             <div class="author-info">
                                 <h5>Sarah T.</h5>
                                 <p>User for 3 months</p>
@@ -271,15 +414,22 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <div class="testimonial-top-border" style="background: var(--cheerful-gradient)"></div>
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"The cheerful messages are my favorite part of waking up! It's like having a pocket-sized ray of sunshine that actually GETS my sense of humor."</p>
+                            <span class="testimonial-persona cheerful">Cheerful Companion</span>
                         </div>
-                        <p class="testimonial-text">"The philosopher persona has honestly changed my outlook on life. Getting these thoughtful messages makes me pause and reflect in the best way."</p>
                         <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael D.">
+                            </div>
                             <div class="author-info">
                                 <h5>Michael D.</h5>
                                 <p>User for 6 months</p>
@@ -289,15 +439,22 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                        <div class="testimonial-top-border" style="background: var(--witty-gradient)"></div>
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="testimonial-text">"I was skeptical at first, but the witty banter has become something I look forward to. It's the perfect blend of humor and thoughtfulness."</p>
+                            <span class="testimonial-persona witty">Witty Conversationalist</span>
                         </div>
-                        <p class="testimonial-text">"I was skeptical at first, but my AI coach has actually helped me stay on track with my goals. It's like having a pocket motivator!"</p>
                         <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jen L.">
+                            </div>
                             <div class="author-info">
                                 <h5>Jen L.</h5>
                                 <p>User for 2 months</p>
@@ -315,7 +472,9 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="privacy-image">
-                        <img src="images/privacy.svg" alt="Privacy and security illustration" class="img-fluid">
+                        <div class="placeholder-image bg-light d-flex align-items-center justify-content-center rounded mb-4" style="height: 600px;">
+                            <i class="fas fa-shield-alt fa-8x text-primary"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -359,106 +518,168 @@
         <div class="container">
             <div class="section-header text-center mb-5">
                 <h2>Get Started With Your AI Friend</h2>
-                <p>Sign up in less than a minute</p>
+                <p>Sign up in less than a minute and start receiving messages that brighten your day</p>
             </div>
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="signup-form-container">
-                        <form id="signupForm" class="needs-validation" novalidate>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="firstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" required>
-                                    <div class="invalid-feedback">
-                                        Please provide your first name.
+                        <div class="row g-0">
+                            <!-- Left Column - Messaging -->
+                            <div class="col-md-5 d-none d-md-block signup-left">
+                                <h3>Get Started With Your AI Friend</h3>
+                                <p>Sign up in less than a minute and start receiving messages that brighten your day.</p>
+                                
+                                <!-- Benefits -->
+                                <div class="mt-4 mb-4">
+                                    <div class="signup-benefit">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>30 free messages daily</span>
+                                    </div>
+                                    <div class="signup-benefit">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Personalized to your schedule</span>
+                                    </div>
+                                    <div class="signup-benefit">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>No ads, no data sharing</span>
+                                    </div>
+                                    <div class="signup-benefit">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Cancel anytime</span>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="lastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" required>
-                                    <div class="invalid-feedback">
-                                        Please provide your last name.
+                                
+                                <!-- Testimonial -->
+                                <div class="signup-testimonial">
+                                    <p>"These messages are the highlight of my day. Worth every penny!"</p>
+                                    <div class="d-flex align-items-center">
+                                        <span class="rating me-2">★★★★★</span>
+                                        <span class="small">Jessica W.</span>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" required>
-                                <div class="invalid-feedback">
-                                    Please provide a valid email.
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" required minlength="8">
-                                <div class="invalid-feedback">
-                                    Password must be at least 8 characters.
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="phoneNumber" class="form-label">Phone Number (US only)</label>
-                                <input type="tel" class="form-control" id="phoneNumber" placeholder="(555) 555-5555" required pattern="\\(\\d{3}\\) \\d{3}-\\d{4}">
-                                <div class="invalid-feedback">
-                                    Please provide a valid US phone number.
                                 </div>
                             </div>
                             
-                            <div class="mb-4">
-                                <label class="form-label">Choose Your AI Persona</label>
-                                <div class="row persona-selection">
-                                    <div class="col-md-4 mb-3">
-                                        <div class="persona-card" data-persona-id="1">
-                                            <div class="persona-icon">
-                                                <i class="fas fa-user-friends"></i>
+                            <!-- Right Column - Form -->
+                            <div class="col-md-7 signup-right">
+                                <form id="signupForm" class="needs-validation" novalidate>
+                                    <!-- Name Fields -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="firstName" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="firstName" required>
+                                            <div class="invalid-feedback">
+                                                Please provide your first name.
                                             </div>
-                                            <h5>Friend</h5>
-                                            <p>Casual, warm and supportive</p>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="lastName" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="lastName" required>
+                                            <div class="invalid-feedback">
+                                                Please provide your last name.
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="persona-card" data-persona-id="2">
-                                            <div class="persona-icon">
-                                                <i class="fas fa-chart-line"></i>
-                                            </div>
-                                            <h5>Coach</h5>
-                                            <p>Motivational and action-oriented</p>
+                                    
+                                    <!-- Email -->
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid email.
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="persona-card" data-persona-id="3">
-                                            <div class="persona-icon">
-                                                <i class="fas fa-brain"></i>
-                                            </div>
-                                            <h5>Philosopher</h5>
-                                            <p>Thoughtful and insightful</p>
+                                    
+                                    <!-- Phone Number -->
+                                    <div class="mb-3">
+                                        <label for="phoneNumber" class="form-label">Phone Number (US only)</label>
+                                        <input type="tel" class="form-control" id="phoneNumber" placeholder="(555) 555-5555" required pattern="\\(\\d{3}\\) \\d{3}-\\d{4}">
+                                        <div class="invalid-feedback">
+                                            Please provide a valid US phone number.
+                                        </div>
+                                        <div class="form-text small text-muted">
+                                            We'll send your AI messages to this number
                                         </div>
                                     </div>
-                                </div>
-                                <input type="hidden" id="personaId" value="1" required>
+                                    
+                                    <!-- Password -->
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password" required minlength="8">
+                                        <div class="invalid-feedback">
+                                            Password must be at least 8 characters.
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Persona Selection -->
+                                    <div class="mb-4">
+                                        <label class="form-label">Choose Your AI Persona</label>
+                                        <div class="row persona-selection">
+                                            <div class="col-md-4 mb-3">
+                                                <div class="persona-card" data-persona-id="1">
+                                                    <div class="persona-icon">
+                                                        <i class="fas fa-user-friends"></i>
+                                                    </div>
+                                                    <h5>Friend</h5>
+                                                    <p>Supportive</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <div class="persona-card" data-persona-id="2">
+                                                    <div class="persona-icon">
+                                                        <i class="fas fa-sun"></i>
+                                                    </div>
+                                                    <h5>Cheerful</h5>
+                                                    <p>Uplifting</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <div class="persona-card" data-persona-id="3">
+                                                    <div class="persona-icon">
+                                                        <i class="fas fa-comment-dots"></i>
+                                                    </div>
+                                                    <h5>Witty</h5>
+                                                    <p>Clever</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="personaId" value="1" required>
+                                    </div>
+                                    
+                                    <!-- Message Frequency -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Message Frequency</label>
+                                        <select class="form-select" id="messageFrequency" required>
+                                            <option value="DAILY">Daily</option>
+                                            <option value="WEEKLY">Weekly</option>
+                                            <option value="MONTHLY">Monthly</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Terms Agreement -->
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="termsAgree" required>
+                                        <label class="form-check-label" for="termsAgree">
+                                            I agree to the <a href="/terms" class="text-primary">Terms of Service</a> and <a href="/privacy" class="text-primary">Privacy Policy</a>
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            You must agree to the terms and conditions.
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Submit Button -->
+                                    <div class="text-center mt-4">
+                                        <button type="submit" class="btn btn-primary btn-lg signup-submit">Connect with Your AI Friend</button>
+                                        <div class="signup-error alert alert-danger mt-3" style="display: none;"></div>
+                                    </div>
+                                    
+                                    <div class="text-center mt-3">
+                                        <p class="small text-muted">
+                                            Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="text-primary">Log in</a>
+                                        </p>
+                                    </div>
+                                </form>
                             </div>
-                            
-                            <div class="mb-3">
-                                <label class="form-label">Message Frequency</label>
-                                <select class="form-select" id="messageFrequency" required>
-                                    <option value="DAILY">Daily</option>
-                                    <option value="WEEKLY">Weekly</option>
-                                    <option value="MONTHLY">Monthly</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="termsAgree" required>
-                                <label class="form-check-label" for="termsAgree">I agree to the Terms of Service and Privacy Policy</label>
-                                <div class="invalid-feedback">
-                                    You must agree to the terms and conditions.
-                                </div>
-                            </div>
-                            
-                            <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-primary btn-lg signup-submit">Connect with Your AI Friend</button>
-                                <div class="signup-error alert alert-danger mt-3" style="display: none;"></div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -589,28 +810,36 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="onboarding-slide text-center">
-                                    <img src="images/onboarding-1.svg" alt="Welcome" class="img-fluid mb-4">
+                                    <div class="placeholder-image bg-light d-flex align-items-center justify-content-center rounded mb-4" style="height: 200px;">
+                                        <i class="fas fa-hand-sparkles fa-4x text-primary"></i>
+                                    </div>
                                     <h3>Welcome to AI Friend!</h3>
                                     <p>Your personal companion for daily positivity and support.</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="onboarding-slide text-center">
-                                    <img src="images/onboarding-2.svg" alt="Choose your AI" class="img-fluid mb-4">
+                                    <div class="placeholder-image bg-light d-flex align-items-center justify-content-center rounded mb-4" style="height: 200px;">
+                                        <i class="fas fa-user-friends fa-4x text-primary"></i>
+                                    </div>
                                     <h3>Choose Your Perfect AI</h3>
-                                    <p>Select from Friend, Coach, or Philosopher personas to match your style.</p>
+                                    <p>Select from Supportive, Cheerful, or Witty personas to match your style.</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="onboarding-slide text-center">
-                                    <img src="images/onboarding-3.svg" alt="Set preferences" class="img-fluid mb-4">
+                                    <div class="placeholder-image bg-light d-flex align-items-center justify-content-center rounded mb-4" style="height: 200px;">
+                                        <i class="fas fa-sliders-h fa-4x text-primary"></i>
+                                    </div>
                                     <h3>Set Your Preferences</h3>
                                     <p>Decide how often you want to receive messages and during what hours.</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="onboarding-slide text-center">
-                                    <img src="images/onboarding-4.svg" alt="Get started" class="img-fluid mb-4">
+                                    <div class="placeholder-image bg-light d-flex align-items-center justify-content-center rounded mb-4" style="height: 200px;">
+                                        <i class="fas fa-rocket fa-4x text-primary"></i>
+                                    </div>
                                     <h3>Ready to Begin!</h3>
                                     <p>Your AI Friend is all set to brighten your day.</p>
                                 </div>

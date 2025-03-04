@@ -1,13 +1,5 @@
--- Drop the existing FK constraint if it exists
-ALTER TABLE IF EXISTS messages DROP CONSTRAINT IF EXISTS FK8cs7qdu3mdbr08xirdmsfxpgk;
-ALTER TABLE IF EXISTS messages DROP CONSTRAINT IF EXISTS FK_parent_message_id;
+-- This script is executed after the tables are created
+-- Create default admin users and personas
 
--- Add a unique constraint on the id column
-ALTER TABLE messages ADD CONSTRAINT unique_message_id UNIQUE (id);
-
--- Add the FK constraint manually - use only parent_message_id as in the Supabase schema
-ALTER TABLE messages 
-  ADD CONSTRAINT FK_parent_message_id 
-  FOREIGN KEY (parent_message_id) 
-  REFERENCES messages(id) 
-  ON DELETE SET NULL;
+-- We don't need to manually handle foreign key constraints
+-- Hibernate will manage them for us when creating tables
