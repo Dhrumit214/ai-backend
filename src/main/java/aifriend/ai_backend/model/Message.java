@@ -70,6 +70,10 @@ public class Message {
     @JdbcTypeCode(SqlTypes.JSON)
     private String metadata = "{}";
     
+    @Column(name = "tags", columnDefinition = "text[]")
+    @JdbcTypeCode(SqlTypes.ARRAY)
+    private String[] tags;
+    
     @Column(name = "user_message_url")
     private String userMessageUrl;
     
@@ -113,5 +117,6 @@ public class Message {
         this.userMessage = userMessage;
         this.aiResponse = aiResponse;
         this.sentiment = SentimentType.fromValue(sentiment);
+        this.tags = new String[0]; // Initialize with empty array
     }
 }

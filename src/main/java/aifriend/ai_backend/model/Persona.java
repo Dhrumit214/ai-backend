@@ -35,15 +35,15 @@ public class Persona {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "personality_traits")
+    @Column(name = "personality_traits", columnDefinition = "jsonb")
     @JdbcTypeCode(SqlTypes.JSON)
     private String personalityTraitsJson = "[]";
     
-    @Column(name = "sample_messages")
+    @Column(name = "sample_messages", columnDefinition = "jsonb")
     @JdbcTypeCode(SqlTypes.JSON)
     private String sampleMessagesJson = "[]";
     
-    @Column(name = "proactive_templates")
+    @Column(name = "proactive_templates", columnDefinition = "jsonb")
     @JdbcTypeCode(SqlTypes.JSON)
     private String proactiveTemplatesJson = "[]";
     
