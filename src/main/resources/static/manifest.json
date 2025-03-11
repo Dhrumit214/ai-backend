@@ -1,6 +1,6 @@
 {
-  "name": "AI Friend",
-  "short_name": "AI Friend",
+  "name": "MsgMeAI",
+  "short_name": "MsgMeAI",
   "description": "Your personal AI friend that sends mood-boosting messages on your schedule",
   "start_url": "/",
   "display": "standalone",

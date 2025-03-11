@@ -143,7 +143,7 @@ function showRegistrationSuccess() {
             <div class="mb-4">
                 <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
             </div>
-            <h3>Welcome to AI Friend!</h3>
+            <h3>Welcome to MsgMeAI!</h3>
             <p class="mb-4">Your account has been created successfully.</p>
             <div class="spinner-border text-primary mb-3" role="status">
                 <span class="visually-hidden">Loading...</span>
