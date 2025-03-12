@@ -1,0 +1,8 @@
+# Ensure HTML files are served as text/html
+AddType text/html .html
+
+# Force the browser to display HTML files rather than download them
+<FilesMatch "\.(?i:html)$">
+  ForceType text/html
+  Header set Content-Disposition inline
+</FilesMatch>

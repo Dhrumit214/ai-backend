@@ -41,7 +41,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/status").permitAll()
                 // Static resources
                 .requestMatchers("/", "/index.html", "/css/**", "/js/**", "/images/**", "/dashboard.html", 
-                    "/manifest.json", "/service-worker.js", "/*.ico", "/*.svg", "/favicon.ico").permitAll()
+                    "/privacy-policy.html", "/terms-conditions.html", "/privacy-policy", "/terms-conditions",
+                    "/manifest.json", "/service-worker.js", "/*.ico", "/*.svg", "/favicon.ico", "/*.html").permitAll()
                 // Admin endpoints
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 // Protected endpoints
